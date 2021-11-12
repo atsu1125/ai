@@ -1,10 +1,13 @@
 FROM node:16.13.0-bullseye
 
-WORKDIR /ai
-
 RUN apt-get update
-RUN apt-get install -y build-essential mecab mecab-ipadic fonts-mplus
+RUN apt-get install -y build-essential mecab libmecab-dev mecab-ipadic-utf8 sudo git make curl xz-utils file fonts-mplus
 
+WORKDIR /mecab-ipadic-neologd
+RUN git clone --depth 1 https://github.com/neologd/mecab-ipadic-neologd.git
+RUN cd mecab-ipadic-neologd && ./bin/install-mecab-ipadic-neologd -n -y
+
+WORKDIR /ai
 COPY . ./
 RUN yarn install
 RUN yarn build
