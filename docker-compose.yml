@@ -3,6 +3,7 @@ version: "3"
 services:
   ai:
     build: .
+    image: ghcr.io/atsu1125/ai:latest
     restart: always
     environment:
       FC_LANG: ja
