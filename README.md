@@ -8,7 +8,8 @@ Misskey用の日本語Botです。
 > Node.js と npm と MeCab (オプション) がインストールされている必要があります。
 
 まず適当なディレクトリに `git clone` します。
-次にそのディレクトリに `config.json` を作成します。中身は次のようにします:
+次にそのディレクトリに `config.json` を作成します。中身は次のようにします（おそらくtrue, false, 数字を入れるときは""を外さないといけない。）:
+
 ``` json
 {
 	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
@@ -23,6 +24,7 @@ Misskey用の日本語Botです。
 	"mecab": "MeCab のインストールパス (ソースからインストールした場合、大体は /usr/local/bin/mecab)",
 	"mecabDic": "MeCab の辞書ファイルパス (オプション)",
 	"mecabNeologd": "MeCabの辞書に mecab-ipadic-NEologd を使用している場合は true にすると良いかも"
+	"welcomeLocal": "新規さんを見つけました！を有効にする場合はtrueを入れる"
 }
 ```
 `yarn install` して `yarn build` して `yarn start` すれば起動できます
@@ -30,6 +32,26 @@ Misskey用の日本語Botです。
 Dockerの場合は最初に `memory/memory.json` に空ファイルを作っておく必要がある
 
 Dockerイメージはここにある https://hub.docker.com/r/mei23/ia/
+
+これをsystemctlで扱いたいので`/etc/systemd/system/ai.service`を作成
+```
+[Unit]
+Description=ai
+
+[Service]
+Type=simple
+Environment=NODE_ENV=production
+User='aiの実行ユーザーを指定'
+ExecStart=/usr/bin/npm start
+WorkingDirectory='aiをインストールしたディレクトリ'
+TimeoutSec=60
+SyslogIdentifier=ai
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+`systemctl enable --now ai.service`で自動起動を設定して起動、`systemctl status ai.service`でステータスを確認できる。
 
 ## フォント
 一部の機能にはフォントが必要です。藍にはフォントは同梱されていないので、ご自身でフォントをインストールディレクトリに`font.ttf`という名前で設置してください。
