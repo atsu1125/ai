@@ -203,7 +203,8 @@ export default class 藍 {
 
 		setInterval(this.logWaking, 10000);
 
-		this.log(chalk.green.bold('Ai am now running!'));
+		this.log(chalk.green.bold('ia am now running!'));
+		this.log(chalk.green.bold('いあは正常起動しました！'));
 	}
 
 	/**

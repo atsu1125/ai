@@ -1,4 +1,4 @@
-<h1><p align="center"><img src="./ai.svg" alt="藍" height="200"></p></h1>
+<h1><p align="center"><img src="./ai.svg" alt="いあ" height="200"></p></h1>
 <p align="center">An Ai for Misskey. <a href="./torisetu.md">About Ai</a></p>
 
 ## これなに
@@ -13,13 +13,13 @@ Misskey用の日本語Botです。
 ``` json
 {
 	"host": "https:// + あなたのインスタンスのURL (末尾の / は除く)",
-	"i": "藍として動かしたいアカウントのアクセストークン",
+	"i": "いあとして動かしたいアカウントのアクセストークン",
 	"master": "管理者のユーザー名(オプション)",
 	"notingEnabled": "ランダムにノートを投稿する機能を無効にする場合は false を入れる",
 	"keywordEnabled": "キーワードを覚える機能 (MeCab が必要) を有効にする場合は true を入れる (無効にする場合は false)",
 	"keywordInterval": "キーワードを覚える間隔 (分, デフォルト60分)",
 	"chartEnabled": "チャート機能を無効化する場合は false を入れてください",
-	"reversiEnabled": "藍とリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
+	"reversiEnabled": "いあとリバーシで対局できる機能を有効にする場合は true を入れる (無効にする場合は false)",
 	"serverMonitoring": "サーバー監視の機能を有効にする場合は true を入れる (無効にする場合は false)",
 	"mecab": "MeCab のインストールパス (ソースからインストールした場合、大体は /usr/local/bin/mecab)",
 	"mecabDic": "MeCab の辞書ファイルパス (オプション)",
@@ -33,31 +33,31 @@ Dockerの場合は最初に `memory/memory.json` に空ファイルを作って�
 
 Dockerイメージはここにある https://hub.docker.com/r/mei23/ia/
 
-これをsystemctlで扱いたいので`/etc/systemd/system/ai.service`を作成
+これをsystemctlで扱いたいので`/etc/systemd/system/ia.service`を作成
 ```
 [Unit]
-Description=ai
+Description=ia
 
 [Service]
 Type=simple
 Environment=NODE_ENV=production
-User='aiの実行ユーザーを指定'
+User='iaの実行ユーザーを指定'
 ExecStart=/usr/bin/npm start
-WorkingDirectory='aiをインストールしたディレクトリ'
+WorkingDirectory='iaをインストールしたディレクトリ'
 TimeoutSec=60
-SyslogIdentifier=ai
+SyslogIdentifier=ia
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
-`systemctl enable --now ai.service`で自動起動を設定して起動、`systemctl status ai.service`でステータスを確認できる。
+`systemctl enable --now ia.service`で自動起動を設定して起動、`systemctl status ia.service`でステータスを確認できる。
 
 ## フォント
-一部の機能にはフォントが必要です。藍にはフォントは同梱されていないので、ご自身でフォントをインストールディレクトリに`font.ttf`という名前で設置してください。
+一部の機能にはフォントが必要です。いあにはフォントは同梱されていないので、ご自身でフォントをインストールディレクトリに`font.ttf`という名前で設置してください。
 
 ## 記憶
-藍は記憶の保持にインメモリデータベースを使用しており、藍のインストールディレクトリに `memory.json` という名前で永続化されます。
+いあは記憶の保持にインメモリデータベースを使用しており、いあのインストールディレクトリに `memory.json` という名前で永続化されます。
 
 ## ライセンス
 MIT
