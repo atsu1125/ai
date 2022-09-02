@@ -27,6 +27,13 @@ export default class extends Module {
 					reaction: msg.friend.love >= 0 ? 'hmm' : null
 				};
 			}
+		} else if (msg.text && msg.includes(['リムーブ', 'リムバ', 'remove me'])) {
+			this.ai.api('following/delete', {
+				userId: msg.userId,
+			});
+			return {
+				reaction: 'angry'
+			};
 		} else {
 			return false;
 		}
