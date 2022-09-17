@@ -1,8 +1,3 @@
-<p align="center">
-	<img src="./nullcatchan.png" alt="nullcatchan!" height="200">
-</p>
-
-
 # これってなに？
 
 Misskey用の[Aiベース](https://github.com/syuilo/ai)の日本語Botです。

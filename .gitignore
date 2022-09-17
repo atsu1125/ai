@@ -4,3 +4,4 @@ node_modules
 memory.json
 font.ttf
 .idea
+.vscode
