@@ -1,0 +1,33 @@
+name: Publish Docker image [nullcat]
+
+on:
+  push:
+    branches:
+      - 'nullnyat-nullcat'
+
+jobs:
+  push_to_registry:
+    name: Push Docker image to GitHub Container Registry
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: atsu1125/ai
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and Push to GitHub Container Registry
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: Dockerfile_production
+          push: true
+          tags: ghcr.io/atsu1125/ai:nullcat
