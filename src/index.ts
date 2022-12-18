@@ -24,6 +24,7 @@ import DiceModule from './modules/dice';
 import ServerModule from './modules/server';
 import VersionModule from './modules/version';
 import FollowModule from './modules/follow';
+import BlockModule from './modules/block';
 import ValentineModule from './modules/valentine';
 // import MazeModule from './modules/maze';
 import ChartModule from './modules/chart';
@@ -93,6 +94,7 @@ promiseRetry(retry => {
 		new WelcomeModule(),
 		new ServerModule(),
 		new FollowModule(),
+		new BlockModule(),
 		new BirthdayModule(),
 		new ValentineModule(),
 		new KeywordModule(),
