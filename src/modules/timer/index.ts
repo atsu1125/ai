@@ -75,12 +75,14 @@ export default class extends Module {
 		if (data.isDm) {
 			this.ai.sendMessage(friend.userId, {
 				text: text
-			});
+			}).catch(() => {});
 		} else {
 			this.ai.post({
 				replyId: data.msgId,
 				text: text
-			});
+			}).catch(e => {
+				console.error(`timer callback failed`, e);
+			})
 		}
 	}
 }
